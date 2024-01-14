@@ -1,0 +1,80 @@
+
+{% extends 'voucher/base.html' %}
+
+
+{% block title %}Create Voucher{% endblock title %}
+
+{% block body %}
+<div class="container mt-3 px-0">
+
+    <body>
+        <h2>Create Voucher</h2>
+        <form method="post" id="voucherForm">
+            {% csrf_token %}
+            {{ voucher_form.as_p }}
+
+            <div id="transactionFormsContainer">
+                <!-- Transaction forms will be dynamically added here -->
+            </div> 
+            <!-- Hidden template for transaction form -->
+            <div id="transactionFormTemplate" >
+                <div class="transactionForm">
+                    <label for="transaction_type">Type:</label>
+                    <select name="transaction_type">
+                        <!-- Populate with actual types -->
+                        <option value="issue">Issue</option>
+                        <option value="receive">Receive</option>
+                    </select>
+                    <label for="remarks">Remarks:</label>
+                    <input type="text" name="remarks">
+                    <label for="weight">Weight:</label>
+                    <input type="number" name="weight">
+                    <label for="purity">Purity:</label>
+                    <input type="number" name="purity">
+                    <label for="wastage">Wastage:</label>
+                    <input type="number" name="wastage">
+                    <!-- Add other fields as necessary -->
+                </div>
+            </div>
+
+            <button type="button" id="addTransaction">Add Transaction</button>
+            <button type="submit">Save Voucher</button>
+        </form>
+
+        
+
+        
+        {% load static %}
+        <script src="{% static "/voucher/create_voucher.js" %}"></script>
+
+
+
+    </body>
+</div>
+
+{% comment %} container for transac table {% endcomment %}
+<div class="container mt-3 px-0 py-3">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered table-hover" id ="trans_table"> 
+                <thead>
+                    <tr>
+                        <th>remarks</th>
+                        <th>weight</th>
+                        <th>purity</th>
+                        <th>wastage</th>
+                                              
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock body %}
+
+
